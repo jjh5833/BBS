@@ -8,7 +8,6 @@ public class User {
 	private String email;
 	private String access_token;
 	
-
 	public User(String id, String name, String user) {
 		this.id = id;
 		this.name = name;
