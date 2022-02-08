@@ -52,6 +52,7 @@ public class User {
 	}
 
 	public String getAccess_token() {
+		
 		return access_token;
 	}
 
