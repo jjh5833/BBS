@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+	<display-name>BBS</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<listener>
+		<listener-class>bbs.jdbc.DBCPInitListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>bbs.util.api.APIHelper</listener-class>
+	</listener>
+	
+	<context-param>
+		<param-name>poolConfig</param-name>
+		<param-value>
+			jdbcdriver=org.mariadb.jdbc.Driver
+			jdbcUrl=jdbc:mariadb://220.70.33.29:3306/poseidon?characterEncoding=utf8
+			dbUser=poseidon
+			dbPass=01234567
+			validationQuery=select 1
+			minIdle=3
+			maxTotal=30
+		</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>kobisMovie</param-name>
+		<param-value>
+			boxOfficeUrl=http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json
+			movieListUrl=http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json
+			movieDetailUrl=http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json
+			key=e2d60f300b52b6c426228f8f7da7d521
+		</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>naverMovie</param-name>
+		<param-value>
+			searchMovieUrl=https://openapi.naver.com/v1/search/movie.json
+			clientId=Yc5xC2qElAu38c7C9V_6
+			clientSecret=f22vPIBL1B
+		</param-value>
+	</context-param>
+	
+	<filter>
+		<filter-name>LoginCheckFilter</filter-name>
+		<filter-class>bbs.filter.LoginCheckFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginCheckFilter</filter-name>
+		<url-pattern>/changePwd.do</url-pattern>
+		<url-pattern>/review/write.do</url-pattern>
+		<url-pattern>/notice/write.do</url-pattern>
+		<url-pattern>/review/modify.do</url-pattern>
+		<url-pattern>/myPage.do</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>bbs.util.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<servlet-class>bbs.mvc.controller.ControllerUsingURI</servlet-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>
+				/WEB-INF/commandHandlerURI.properties				
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>	
+	
+</web-app>

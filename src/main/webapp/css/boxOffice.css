@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+.panel {
+	position: relative;
+	top: 30px;
+	left: 310px;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.panel:hover {
+	color: red;
+	text-decoration: underline;
+}
+
+#arrowLeft {
+	position: absolute;
+	top: 245px;
+	left: 50px;
+	cursor: pointer;
+}
+
+#arrowRight {
+	position: absolute;
+	top: 245px;
+	left: 720px;
+	cursor: pointer;
+}
+
+#wrapper {
+	width: 600px;
+	height: 400px;
+	position: absolute;
+	top: 75px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	overflow: hidden;
+}
+
+#mask {
+	width: 1200px;
+	height: 400px;
+}
+
+.scrollItem {
+	width: 600px;
+	height: 400px;
+	float: left;
+}
+
+.scrollContent {
+	position: relative;
+	width: 600px;
+	height: 400px;
+	margin: 0 auto;
+}
+
+.selected {
+	color: red;
+	text-decoration: underline;
+}
+
+table#row01 {
+	border-collapse: collapse;
+}
+table#row02 {
+	position: relative;
+	top: 10px;
+	border-collapse: collapse;
+}
+
+td.imageTd {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 120px;
+	height: 160px;
+	line-height: 0;
+	border-left-style: solid;
+	border-left-width: 10px;
+	border-left-color: #2b2b2b;
+	border-right-style: solid;
+	border-right-width: 10px;
+	border-right-color: #2b2b2b;
+	overflow: hidden;
+}
+
+td.imageTd:hover img {
+	transform: scale(1.05);
+}
+
+td.imageTd > img {
+	z-index: 1;
+	transform: scale(1);
+	transition: transform 0.1s linear;
+	cursor: pointer;
+}
+
+td.imageTd > img + div {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 2;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 1px 1px 0px black;
+}
+
+td.labelTd {
+	margin: 0;
+	padding: 0;
+	height: 20px;
+	border-left-style: solid;
+	border-left-width: 10px;
+	border-left-color: #2b2b2b;
+	border-right-style: solid;
+	border-right-width: 10px;
+	border-right-color: #2b2b2b;
+}
+
+td.labelTd > div {
+	border: 1px solid black;
+	background-color: black;
+}
+
+td.labelTd > div > label {
+	margin-left: 2px;
+	width: 40px;
+	color: white;
+	font-size: 10px;
+	display: inline-block;
+}
+
+td.labelTd > div > label + label {
+	width: 58px;
+	color: red;
+	font-size: 11px;
+	display: inline-block;
+	text-align: right;
+}
